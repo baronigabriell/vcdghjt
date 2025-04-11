@@ -1,0 +1,71 @@
+body{
+    margin: 0;
+}
+#main-index{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(../img/floresta.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+button{
+    height: 50px;
+    width: 120px;
+    font-size: 17px;
+    border: none;
+    background-color: #1F2C17;
+    border-radius: 30px;
+    color: white;
+    font-family: outfit;
+}
+button:hover{
+    background-color: #3a5e23;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.4s ease-in-out;
+}
+button:not(:hover){
+    background-color: #1F2C17;
+    transition: all 0.4s ease-in-out;
+}
+button:active{
+    transform: scale(1);
+}
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#game-info {
+    position: absolute;
+    text-align: center;
+    color: white;
+    background-color: #1F2C17;
+    padding: 10xp;
+    font-family: outfit;
+}
+
+#home-screen {
+    text-align: center;
+}
+@keyframes buttonDisappear {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3); 
+        opacity: 0;
+    }
+}
+
