@@ -1,7 +1,8 @@
-body{
+body {
     margin: 0;
 }
-#main-index{
+
+#main-index {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,29 +12,34 @@ body{
     background-repeat: no-repeat;
     background-position: center;
 }
-button{
+
+button {
     height: 50px;
     width: 120px;
     font-size: 17px;
     border: none;
-    background-color: #1F2C17;
+    background-color: #244937;
     border-radius: 30px;
     color: white;
     font-family: outfit;
 }
-button:hover{
-    background-color: #3a5e23;
+
+button:hover {
+    background-color: #76976f;
     cursor: pointer;
     transform: scale(1.1);
     transition: all 0.4s ease-in-out;
 }
-button:not(:hover){
-    background-color: #1F2C17;
+
+button:not(:hover) {
+    background-color: #244937;
     transition: all 0.4s ease-in-out;
 }
-button:active{
+
+button:active {
     transform: scale(1);
 }
+
 .hidden {
     opacity: 0;
     pointer-events: none;
@@ -50,22 +56,247 @@ button:active{
     position: absolute;
     text-align: center;
     color: white;
-    background-color: #1F2C17;
-    padding: 10xp;
+    background-color: #244937;
+    width: 30%;
+    padding: 30px;
     font-family: outfit;
+    border: #85ca77 6px outset;
+}
+
+a {
+    display: block;
+}
+
+#game-info:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all 0.4s ease-in-out;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+#game-info:not(:hover) {
+    transition: all 0.4s ease-in-out;
+}
+
+#game-info:active {
+    transform: scale(1);
 }
 
 #home-screen {
     text-align: center;
 }
+
 @keyframes buttonDisappear {
     0% {
         transform: scale(1);
         opacity: 1;
     }
+
     100% {
-        transform: scale(3); 
+        transform: scale(8);
         opacity: 0;
     }
 }
 
+#main-inicial {
+    height: 100vh;
+    background-image: url(../img/floresta2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+svg {
+    height: 100px;
+}
+
+.box {
+    background-color: rgb(250, 255, 240);
+    width: fit-content;
+    height: fit-content;
+    padding: 19px;
+    border-radius: 17px;
+    fill: #244937;
+    color: #244937;
+    font-family: outfit;
+    font-size: 12px;
+    margin: 20px;
+}
+
+.box:hover {
+    background-color: #244937;
+    color: rgb(250, 255, 240);
+    fill: rgb(250, 255, 240);
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+
+.box:not(:hover) {
+    background-color: #fafff0;
+    transition: all 0.4s ease-in-out;
+    fill: #244937;
+    color: #244937;
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    animation: spinz 1.35s linear infinite;
+    width: 100%;
+    height: 100%;
+    background-color: #fafff0;
+    z-index: 100;
+}
+
+.loader {
+    border: 8px solid #efeee8;
+    border-top: 8px solid #244937;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1.35s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -60px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+
+    25% {
+        transform: rotate(180deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: rotate(360deg);
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+        transform: rotate(540deg);
+    }
+
+    100% {
+        transform: rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes spinz {
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Estilos básicos */
+body {
+    overflow-x: hidden;
+    /* Impede rolagem horizontal */
+}
+
+.menu-container {
+    position: relative;
+}
+
+#bars{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 15px;
+    background-color: #244937;
+    /* Fundo verde */
+    padding: 4px;
+    transition: all 0.5s ease-in-out;
+    z-index: 10;
+    /* Fica acima do menu */
+    fill: #fafff0;
+}
+
+.bar {
+    height: 2.5px;
+    width: 80%;
+    background-color: #fafff0;
+    border-radius: 5px;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: -170px;
+    width: 250px;
+    height: 91.8%;
+    background-color: #244937;
+    border-radius: 10px 0 0 10px;
+    padding-top: 60px;
+    transition: left 0.3s ease;
+    box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 0 30px 30px 0;
+}
+
+.menu ul {
+    list-style: none;
+    font-family: outfit;
+    margin-top: 40px;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.menu ul li {
+    margin: 30px 25px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.menu.active {
+    left: 0;
+}
+
+.menu.active ul {
+    opacity: 1;
+}
+
+.hamburger.active {
+    background-color: #244937;
+}
+
+.hamburger.active .bar {
+    background-color: white;
+}

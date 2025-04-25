@@ -12,8 +12,7 @@
     <div id="home-screen">
         <button id="play-button">Jogar</button>
     </div>
-
-    <div id="game-info" class="hidden">
+    <div id="game-info" class="hidden" onclick="redirecionarPagina()">
         <h1>Bem-vindo ao jogo!</h1>
         <p>Aqui vão as informações do jogo...</p>
     </div>
@@ -36,6 +35,11 @@
             gameInfo.classList.add('visible');
         }, 900); 
     });
+
+    function redirecionarPagina() {
+        window.location.href = "paginainicial.php";
+    }
+
 </script>
 
 </html>
