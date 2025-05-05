@@ -237,11 +237,9 @@ body {
     cursor: pointer;
     border-radius: 15px;
     background-color: #244937;
-    /* Fundo verde */
     padding: 4px;
     transition: all 0.5s ease-in-out;
     z-index: 10;
-    /* Fica acima do menu */
     fill: #fafff0;
 }
 
