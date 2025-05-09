@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&display=swap" rel="stylesheet">
+    <title>Pergaminho Abrindo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            background-color: #244937;
+            overflow: hidden; /* Impede a barra de rolagem */
+        }
+
+        .wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.5s ease-out;
+        }
+
+        .fundo {
+            height: 200px;
+            width: 300px;
+            background-color: #3d2f17;
+        }
+
+        .lid {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-right: 150px solid transparent;
+            border-bottom: 100px solid transparent;
+            border-left: 150px solid transparent;
+            transform-origin: top;
+            transition: transform 0.25s linear;
+        }
+
+        /* Lid when closed */
+        .lid.one {
+            border-top: 100px solid #634c24;
+            transform: rotateX(0deg);
+            z-index: 3;
+        }
+
+        /* Lid when opened */
+        .lid.two {
+            border-top: 100px solid #3d2f17;
+            transform: rotateX(90deg);
+            z-index: 1;
+        }
+
+        .envelope {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-top: 100px solid transparent;
+            border-right: 150px solid #b58f4e;
+            border-bottom: 100px solid #b58f4e;
+            border-left: 150px solid #876834;
+            z-index: 3;
+            transition: transform 0.5s ease-out;
+        }
+
+        .letter {
+            position: absolute;
+            top: 0;
+            width: 80%;
+            height: 80%;
+            background: linear-gradient(135deg, #e4d8a1, #f1e2b8, #e4d8a1);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 20px rgba(0, 0, 0, 0.15);
+            background-size: 10px 10px;
+            z-index: 2;
+            transition: 0.5s ease-out;
+        }
+
+        .letter p {
+            text-align: center;
+            font-size: 30px;
+            margin-top: 30px;
+            color: #3B4049;
+            font-family: ballet;
+        }
+
+        /* Efeito de hover para abrir o lid (antes do clique) */
+        .wrapper:hover .lid.one {
+            transform: rotateX(90deg);
+            transition-delay: 0s;
+        }
+
+        .wrapper:hover .lid.two {
+            transform: rotateX(180deg);
+            transition-delay: 0.25s;
+        }
+
+        .wrapper:hover .letter {
+            transform: translateY(-50px);
+            transition-delay: 0.5s;
+        }
+
+        /* Quando clicado, move todo o envelope para baixo */
+        .clicked {
+            pointer-events: none; /* Desabilita qualquer interação após o clique */
+        }
+
+        /* Move o envelope e seus elementos para baixo */
+        .clicked .fundo,
+        .clicked .lid,
+        .clicked .envelope {
+            transform: translateY(500px); /* Move tudo para baixo */
+        }
+
+        /* A carta permanece no lugar */
+        .clicked .letter {
+            transform: translateY(0);
+            transform: scale(3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="fundo"></div>
+        <div class="lid one"></div>
+        <div class="lid two"></div>
+        <div class="envelope"></div>
+        <div class="letter">
+            <p>Gabriel, Goevana<br>Júlia e Wina
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const wrapper = document.querySelector('.wrapper');
+
+        // Detecta o clique no envelope
+        wrapper.addEventListener('click', () => {
+            // Alterna a classe 'clicked' para mover o envelope e os lids para baixo
+            wrapper.classList.add('clicked'); // Isso evita hover após o clique
+        });
+    </script>
+</body>
+
+</html>
