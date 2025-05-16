@@ -9,16 +9,6 @@
 </head>
 <body>
 <main id="main-index">
-    <div id="background-split">
-        <div class="left-bg"></div>
-        <div class="right-bg"></div>
-    </div>
-
-    <div id="home-screen">
-        <button id="play-button">Jogar</button>
-    </div>
-
-    <div id="envelope-container" class="hidden">
         <div class="wrapper">
             <div class="fundo"></div>
             <div class="lid one"></div>
@@ -28,38 +18,47 @@
                 <p>Gabriel, Goevana<br>Júlia e Wina</p>
             </div>
         </div>
+
+    <!-- Primeiro o fundo -->
+    <div id="background-split">
+        <div class="left-bg"></div>
+        <div class="right-bg"></div>
+    </div>
+
+    <!-- Por último, o botão -->
+    <div id="home-screen">
+        <button id="play-button">Jogar</button>
     </div>
 </main>
-
-
 </body>
+
 <script>
 const playButton = document.getElementById('play-button');
 const leftBg = document.querySelector('.left-bg');
 const rightBg = document.querySelector('.right-bg');
-const envelopeContainer = document.getElementById('envelope-container');
+const wrapper = document.querySelector('.wrapper');
 
-// Função que é chamada quando o botão é clicado
 playButton.addEventListener('click', () => {
-    // Aplica a animação de desaparecer no botão
     playButton.style.animation = 'buttonDisappear 0.9s forwards';
 
-    // Remove a classe 'hidden' e adiciona a classe 'visible' para mostrar o envelope
-    envelopeContainer.classList.remove('hidden');
-    envelopeContainer.classList.add('visible');
-
-    // Após o clique, move as metades do fundo
+    // Começa a abrir os fundos
     setTimeout(() => {
         leftBg.classList.add('open-left');
         rightBg.classList.add('open-right');
-    }, 500); // Um pequeno delay para a animação do botão desaparecer
+
+        // Após o fundo começar a abrir, desativa o bloqueio de eventos de mouse
+        setTimeout(() => {
+            leftBg.classList.add('disable-pointer');
+            rightBg.classList.add('disable-pointer');
+        }, 1500); // dá tempo do fundo abrir visualmente (ajuste se sua animação for mais rápida/lenta)
+    }, 500);
 });
 
 
+wrapper.addEventListener('click', () => {
+    wrapper.classList.add('clicked');
+});
 
 </script>
-
-
-
 
 </html>

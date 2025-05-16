@@ -2,15 +2,10 @@ body {
     margin: 0;
 }
 
-#main-index {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #244937;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 button {
@@ -41,16 +36,10 @@ button:active {
 }
 
 .hidden {
-    opacity: 0;
     pointer-events: none;
     transition: opacity 0.5s ease-in-out;
 }
 
-.visible {
-    opacity: 1;
-    pointer-events: auto;
-    transition: opacity 0.5s ease-in-out;
-}
 
 #game-info {
     position: absolute;
@@ -98,53 +87,6 @@ a {
     }
 }
 
-/* Para garantir que a posição do envelope seja correta */
-#main-index {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #244937;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-#background-split {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    top: 0;
-    left: 0;
-    z-index: 1; /* Fundo abaixo do envelope */
-}
-
-.left-bg, .right-bg {
-    flex: 1;
-    height: 100%;
-    background-image: url(../img/floresta.jpg); /* Sua imagem aqui */
-    background-size: 200% 100%;
-    transition: transform 2s ease-in-out;
-}
-
-.left-bg {
-    background-position: left center;
-}
-
-.right-bg {
-    background-position: right center;
-}
-
-.open-left {
-    transform: translateX(-70%);
-}
-
-.open-right {
-    transform: translateX(70%);
-}
-
 #home-screen {
     position: relative;
     z-index: 2; /* O botão acima do fundo e do envelope */
@@ -155,37 +97,18 @@ a {
     align-items: center;
 }
 
-#envelope-container {
-    position: absolute;
-    top: 50%; /* Posiciona verticalmente no meio da tela */
-    left: 50%; /* Posiciona horizontalmente no meio da tela */
-    transform: translate(-50%, -50%); /* Ajusta para centralizar exatamente */
-    display: none; /* Inicialmente escondido */
-    z-index: 3; /* Certifique-se de que o envelope está acima dos outros elementos */
-}
-
-/* Torna o envelope visível quando a classe "visible" for adicionada */
-.visible {
-    display: block;
-    opacity: 1;
-}
-
-/* Wrapper do envelope */
 .wrapper {
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: center; /* Adicionado para centralizar */
     cursor: pointer;
     transition: transform 0.5s ease-out;
 }
 
-/* Envelope e o fundo */
 .fundo {
     height: 200px;
     width: 300px;
     background-color: #3d2f17;
-    border-radius: 12px; /* Pode adicionar borda arredondada para o envelope */
 }
 
 .lid {
@@ -201,36 +124,39 @@ a {
     transition: transform 0.25s linear;
 }
 
-/* Lid quando fechado */
+/* Lid when closed */
 .lid.one {
     border-top: 100px solid #634c24;
     transform: rotateX(0deg);
-    z-index: 3;
+    z-index: 1;
 }
 
-/* Lid quando aberto */
+/* Lid when opened */
 .lid.two {
     border-top: 100px solid #3d2f17;
     transform: rotateX(90deg);
     z-index: 1;
 }
 
-/* Envelope */
 .envelope {
     position: absolute;
-    height: 200px;
-    width: 300px;
+    height: 100%;
+    width: 100%;
     top: 0;
     left: 0;
     border-top: 100px solid transparent;
     border-right: 150px solid #b58f4e;
     border-bottom: 100px solid #b58f4e;
     border-left: 150px solid #876834;
-    z-index: 3; /* Garantir que o envelope fique acima do fundo */
+    z-index: 1;
     transition: transform 0.5s ease-out;
 }
 
-/* Carta dentro do envelope */
+.disable-pointer {
+    pointer-events: none;
+}
+
+
 .letter {
     position: absolute;
     top: 0;
@@ -239,7 +165,7 @@ a {
     background: linear-gradient(135deg, #e4d8a1, #f1e2b8, #e4d8a1);
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 20px rgba(0, 0, 0, 0.15);
     background-size: 10px 10px;
-    z-index: 2;
+    z-index: -1;
     transition: 0.5s ease-out;
 }
 
@@ -251,7 +177,7 @@ a {
     font-family: ballet;
 }
 
-/* Efeito de hover para abrir a tampa do envelope */
+/* Efeito de hover para abrir o lid (antes do clique) */
 .wrapper:hover .lid.one {
     transform: rotateX(90deg);
     transition-delay: 0s;
@@ -267,25 +193,23 @@ a {
     transition-delay: 0.5s;
 }
 
-/* Quando o envelope é clicado, ele desce */
+/* Quando clicado, move todo o envelope para baixo */
 .clicked {
     pointer-events: none; /* Desabilita qualquer interação após o clique */
 }
 
+/* Move o envelope e seus elementos para baixo */
 .clicked .fundo,
 .clicked .lid,
 .clicked .envelope {
-    transform: translateY(500px); /* Move o envelope para baixo */
+    transform: translateY(500px); /* Move tudo para baixo */
 }
 
+/* A carta permanece no lugar */
 .clicked .letter {
     transform: translateY(0);
     transform: scale(3);
 }
-
-
-
-
 
 svg {
     height: 100px;
@@ -391,12 +315,6 @@ svg {
     100% {
         opacity: 0;
     }
-}
-
-/* Estilos básicos */
-body {
-    overflow-x: hidden;
-    /* Impede rolagem horizontal */
 }
 
 .menu-container {
@@ -615,6 +533,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100%;
     background-color: #244937;
     background-size: cover;
     background-repeat: no-repeat;
@@ -666,16 +585,8 @@ body {
     align-items: center;
 }
 
-#envelope-container {
-    position: absolute; /* Faz o envelope ficar posicionado sobre o fundo */
-    z-index: 3; /* O envelope vai ficar acima do fundo */
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
 .visible {
-    display: block;
     opacity: 1;
+    pointer-events: auto;
 }
 
