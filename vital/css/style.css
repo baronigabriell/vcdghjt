@@ -25,6 +25,7 @@ button:hover {
     cursor: pointer;
     transform: scale(1.1);
     transition: all 0.4s ease-in-out;
+
 }
 
 button:not(:hover) {

@@ -14,7 +14,7 @@
     }
     #jogadoresInputs input {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       opacity: 0;
       max-height: 0;
       transition: opacity 0.5s ease, max-height 0.5s ease;
@@ -23,6 +23,15 @@
     #jogadoresInputs input.visible {
       opacity: 1;
       max-height: 50px;
+    }
+    #cadastroForm{
+      background-color: #fffaeb;
+      position: absolute;
+      padding: 40px;
+      border-radius: 30px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
     }
     svg{
         height: 20px;
@@ -34,9 +43,49 @@
         outline: none;
         font-size: 15px;
         font-family: outfit;
+        border-radius: 15px;
+        border: 2px solid #105652;
+        padding-left: 12px;
+        background-color: #fffaeb;
+        transition: 0.4s all ease-in;
+    }
+    input.filled   {
+      box-shadow: inset 0 0 4px rgba(0, 0, 10, 0.5);
     }
     div{
         text-align: center;
+    }
+    button{
+      background-color: #244937;
+      width: 150px;
+    }
+    #jogadoresInputs input {
+      display: block;
+      margin-bottom: 0;
+      opacity: 0;
+      max-height: 0;
+      transition: opacity 0.5s ease, max-height 0.5s ease, margin-bottom 0.5s ease;
+      overflow: hidden;
+    }
+
+    #jogadoresInputs input.visible {
+      opacity: 1;
+      max-height: 50px;
+      margin-bottom: 15px;
+    }
+    #salvar{
+      background-color: #fffaeb;
+      color: #105652;
+      width: 50px;
+      height: 30px;
+    }
+    #salvar:hover{
+      color: #76976f;
+      transform: scale(1) skew(-10deg);
+      transition: 0.4s all ease-in-out;
+    }
+    #jogadoresInputs{
+      text-align: end;
     }
   </style>
 </head>
@@ -44,9 +93,11 @@
     <div class="preloader" id="preloader">
         <div class="loader" id="loader"></div>
     </div>
-    <h1 style="color: white;">Cadastro de Jogadores</h1>
+    
 
 <form id="cadastroForm">
+<h1 style="color: #105652;">Cadastro de Jogadores</h1>
+<br>
   <div id="jogadoresInputs">
     <input type="text" name="jogador" placeholder="Nome do jogador 1" required class="visible" />
     <input type="text" name="jogador" placeholder="Nome do jogador 2" required class="visible" />
@@ -55,10 +106,12 @@
     <!-- Inputs extras escondidos inicialmente -->
     <input type="text" name="jogador" placeholder="Nome do jogador 5" />
     <input type="text" name="jogador" placeholder="Nome do jogador 6" />
+
+    <button type="submit" id="salvar">Salvar</button>
   </div>
 
   <button type="button" id="addJogadorBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg></button><br/><br/>
-  <button type="submit">Começar jogo</button>
+  <button>Começar jogo</button>
 </body>
 <script>
         let elem_preloader = document.getElementById("preloader");
@@ -109,5 +162,17 @@
       // Aqui você manda os jogadores pro banco ou faz o que quiser
       alert(`Jogadores cadastrados: ${jogadores.join(', ')}`);
     });
+    const inputs = document.querySelectorAll('input');
+
+inputs.forEach(input => {
+  input.addEventListener('input', () => {
+    if (input.value.trim() !== '') {
+      input.classList.add('filled'); // adiciona sombra se tiver texto
+    } else {
+      input.classList.remove('filled'); // remove sombra se apagou texto
+    }
+  });
+});
+
 </script>
 </html>
