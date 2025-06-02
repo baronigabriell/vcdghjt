@@ -3,19 +3,23 @@ include 'conecta.php';
 if (!$conexao) {
     die("Falha na conexão com o banco de dados: " . mysqli_connect_error());
 }
-$query = "SELECT jogador_1, jogador_2, jogador_3, jogador_4, jogador_5, jogador_6, ordem_jogo
+
+// Recupera a última ordem de jogadores e o índice de quem é a vez
+$query = "SELECT jogador_1, jogador_2, jogador_3, jogador_4, jogador_5, jogador_6, ordem_jogo, indice_vez
           FROM jogadores
           ORDER BY jogadores_id DESC
           LIMIT 1";
 
 $result = mysqli_query($conexao, $query);
 $jogadores = [];
+$indice_vez = 0; // Começa no primeiro jogador
 
 if ($result && mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
 
     if (!empty($row['ordem_jogo'])) {
         $jogadores = json_decode($row['ordem_jogo'], true);
+        $indice_vez = $row['indice_vez']; // Recupera a vez do último jogador
     } else {
         foreach ($row as $chave => $jogador) {
             if (strpos($chave, 'jogador_') === 0 && !empty($jogador)) {
@@ -23,15 +27,15 @@ if ($result && mysqli_num_rows($result) > 0) {
             }
         }
 
-        shuffle($jogadores); 
+        shuffle($jogadores); // Embaralha a ordem dos jogadores
         $ordem_json = json_encode($jogadores);
-        $update = "UPDATE jogadores SET ordem_jogo = '" . mysqli_real_escape_string($conexao, $ordem_json) . "' 
-                   WHERE jogadores_id = (SELECT MAX(jogadores_id) FROM jogadores)";
+        $update = "UPDATE jogadores 
+                   JOIN (SELECT MAX(jogadores_id) AS id FROM jogadores) AS ult 
+                   ON jogadores.jogadores_id = ult.id 
+                   SET jogadores.ordem_jogo = '" . mysqli_real_escape_string($conexao, $ordem_json) . "'";
+
         mysqli_query($conexao, $update);
     }
-} else {
-    echo "<p style='color:red;'>Nenhum jogador encontrado!</p>";
-    exit;
 }
 ?>
 
@@ -121,14 +125,14 @@ if ($result && mysqli_num_rows($result) > 0) {
         </div>
         <?php endforeach; ?>
         <?php if (!empty($jogadores)): ?>
-            <p id="vez"><?= htmlspecialchars(ucwords(strtolower($jogadores[0]))) ?>, agora é sua vez!</p>
+            <p id="vez"><?= htmlspecialchars(ucwords(strtolower($jogadores[$indice_vez]))) ?>, agora é sua vez!</p>
         <?php endif; ?>
         <button type="button" id="comecarJogo" onclick="redirecionarPagina()">Seguir</button>
     </div>
 </body>
 <script>
     function redirecionarPagina() {
-      window.location.href = "dado.php";
+        window.location.href = "dado.php";
     }
 </script>
 </html>

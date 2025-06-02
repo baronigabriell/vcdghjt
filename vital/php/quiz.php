@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+
 
 <head>
     <meta charset="UTF-8">
@@ -146,6 +145,7 @@
             <button id="ver" onclick="verResposta()">Ver resposta</button>
             <button id="proxima" onclick="proximaPergunta()" style="display: none;">Próxima</button>
         </div>
+        <button onclick="redirecionarPagina()">Voltar ao quiz</button>
         <div id="resultado"></div>
     </div>
 
@@ -154,16 +154,6 @@
                 pergunta: "1. Como saber se tem água por perto na floresta?",
                 opcoes: ["Barulhos de animais e cheiro forte", "Som do vento e voo de aves ao amanhecer", "Árvore caída e folhas secas","Silêncio e calor intenso"],
                 correta: 1
-            },
-            {
-                pergunta: "2. O que usar para montar um filtro de água simples?",
-                opcoes: ["Areia, folhas e galhos", "Carvão, pedras pequenas e areia limpa", "Terra, musgo e folhas","Frutas, gravetos e argila"],
-                correta: 1
-            },
-            {
-                pergunta: "3. O que fazer com a água filtrada antes de beber?",
-                opcoes: ["Congelar", "Deixar descansar", "Ferver","Coar com folhas"],
-                correta: 2
             }
         ];
 
@@ -240,6 +230,10 @@
         }
 
         carregarPergunta();
+
+        function redirecionarPagina() {
+        window.location.href = "dado.php";
+    }
     </script>
 </body>
 
