@@ -530,13 +530,12 @@ svg {
     color: #fafff0;
     margin-top: 60px;
     border-radius: 3px;
-    font-size: 12px;
-    font-weight: 600;
     background-color: #244937;
     height: 50px;
     width: 120px;
     cursor: pointer;
     border-radius: 30px;
+    font-family: outfit;
 }
 .roll:hover{
     color: #fafff0;
