@@ -10,6 +10,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <title>Página inicial</title>
+    <style>
+        #continuar{
+            left: 50%;
+            margin-top: 38%;
+            transform: translate(-50%);
+            position: absolute;
+            z-index: 5;
+            background-color: transparent;
+            color: white;
+            font-size: 30px;
+        }
+        #continuar:hover{
+            background-color: transparent;
+            color: #ae8238;
+        }
+    </style>
 </head>
 <body>
 <main id="main-index">
@@ -19,15 +35,11 @@
             <div class="lid two"></div>
             <div class="envelope"></div>
             <div class="letter" >
-                <p>Bem-vindo viadinhx</p>
-                <p style="font-family: montserrat; font-weight: 200; font-size: 5px;">Em Sobreviver na Floresta, os jogadores se encontram em uma situação extrema: perdidos no meio de uma floresta densa e implacável. A natureza selvagem, com seus perigos e recursos limitados, será tanto uma aliada quanto um adversário. O objetivo é simples, mas desafiador: sobreviver até ser resgatado ou encontrar uma maneira de escapar. Mas cuidado, a floresta não oferece perdão para aqueles que não estão preparados!</p>
-                <a href="cadjogadores.php">
-                <p id="continuar" onclick=" redirecionarPaginaTabu()">Continuar</p>
-                </a>
+                <p>Bem-vindo</p>
+                <p style="font-family: montserrat; font-weight: 300; font-size: 6px; text-align: justify;">ㅤㅤVocê acordou desnorteado, sem se lembrar de como chegou à uma floresta. Para escapar, precisará de inteligência, instinto de sobrevivência e os conhecimentos adquiridos ao longo da jornada. Nesta trilha solitária, você recebe ajuda de animais surpreendentemente comunicativos. Desvende os segredos, resolva enigmas e encontre o caminho de volta para casa.</p>
             </div>
         </div>
-    
-
+    <button id="continuar" onclick=" redirecionarPaginaTabu()">Continuar</button>
     <!-- Primeiro o fundo -->
     <div id="background-split">
         <div class="left-bg"></div>
@@ -69,8 +81,9 @@ wrapper.addEventListener('click', () => {
     wrapper.classList.add('clicked');
 });
 
-
-
+function redirecionarPaginaTabu() {
+        window.location.href = "cadjogadores.php";
+    }
 </script>
 
 </html>

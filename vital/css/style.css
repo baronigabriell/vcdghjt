@@ -171,7 +171,9 @@ a {
     background-size: 10px 10px;
     z-index: 1;
     transition: 0.5s ease-out;
-    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: black;
 }
 
 #continuar{
@@ -372,7 +374,7 @@ svg {
     top: 0;
     left: -170px;
     width: 250px;
-    height: 94%;
+    height: 100%;
     background-color: #244937;
     padding-top: 60px;
     transition: left 0.3s ease;
@@ -424,7 +426,7 @@ svg {
 .container{
     display: grid;
     place-items: center;
-    width: 250px;
+    width: 324px;
     background: #fafff0;
     padding: 60px 0 40px;
     border-radius: 30px;

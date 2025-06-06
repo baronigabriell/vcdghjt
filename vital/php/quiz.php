@@ -156,12 +156,74 @@ mysqli_query($conexao, "UPDATE jogadores_status SET has_skip = 1 WHERE nome = '$
     </div>
 
     <script>
-        const quiz = [{
-                pergunta: "1. Como saber se tem água por perto na floresta?",
-                opcoes: ["Barulhos de animais e cheiro forte", "Som do vento e voo de aves ao amanhecer", "Árvore caída e folhas secas","Silêncio e calor intenso"],
-                correta: 1
-            }
-        ];
+        const quiz = [
+        {
+            pergunta: "Como saber se tem água por perto na floresta?",
+            opcoes: ["Barulhos de animais e cheiro forte", "Som do vento e voo de aves ao amanhecer", "Árvore caída e folhas secas", "Silêncio e calor intenso"],
+            correta: 1
+        },
+        {
+            pergunta: "O que usar para montar um filtro de água simples?",
+            opcoes: ["Areia, folhas e galhos", "Carvão, pedras pequenas e areia limpa", "Terra, musgo e folhas", "Frutas, gravetos e argila"],
+            correta: 1
+        },
+        {
+            pergunta: "O que fazer com a água filtrada antes de beber?",
+            opcoes: ["Congelar", "Deixar descansar", "Ferver", "Coar com folhas"],
+            correta: 2
+        },
+        {
+            pergunta: "Como saber se um fruto ou raiz pode ser comido?",
+            opcoes: ["Se brilhar ao sol", "Se estiver no chão", "Se tiver cor forte e cheiro doce", "Se estiver comido por insetos"],
+            correta: 2
+        },
+        {
+            pergunta: "Por que comer só um pedacinho de alimento novo?",
+            opcoes: ["Para economizar", "Para ver se é gostoso", "Para não acabar tudo", "Para evitar intoxicação"],
+            correta: 3
+        },
+        {
+            pergunta: "O que usar para fazer uma vara de pesca improvisada?",
+            opcoes: ["Pedra, cipó e folha", "Galho longo, fibras de árvore e anzol de espinho", "Bambu, seiva e folha de bananeira", "Casca de coco, musgo e cipó"],
+            correta: 1
+        },
+        {
+            pergunta: "Para que serve a armadilha de buraco?",
+            opcoes: ["Pegar água", "Armazenar comida", "Pegar animais", "Dormir seguro"],
+            correta: 2
+        },
+        {
+            pergunta: "Qual madeira é boa para fazer fogo?",
+            opcoes: ["Úmida e coberta de musgo", "Verde e pesada", "Seca e leve, como bambu ou pinheiro", "Madeira molhada de rio"],
+            correta: 2
+        },
+        {
+            pergunta: "Como montar um abrigo simples do tipo “A”?",
+            opcoes: ["Fazer buraco no chão", "Usar galhos apoiados entre duas árvores", "Pendurar um pano numa árvore", "Dormir embaixo de uma pedra"],
+            correta: 1
+        },
+        {
+            pergunta: "Como fazer uma lâmina primitiva?",
+            opcoes: ["Com folha e graveto", "Com pedra afiada presa em madeira", "Com cipó trançado", "Com espinhos"],
+            correta: 1
+        },
+        {
+            pergunta: "Como endurecer a ponta de uma lança artesanal?",
+            opcoes: ["Colocar na água", "Envolver em barro", "Girar devagar no fogo", "Passar em pedra"],
+            correta: 2
+        },
+        {
+            pergunta: "Como saber se há javalis por perto?",
+            opcoes: ["Grunhidos e cheiro forte", "Som de folhas secas", "Galhos quebrados", "Voo de pássaros"],
+            correta: 0
+        },
+        {
+            pergunta: "Como pedir ajuda na floresta?",
+            opcoes: ["Andar o tempo todo", "Acender fogueira, usar espelhos e fazer sinais como “SOS”", "Gritar por horas", "Escrever em árvores"],
+            correta: 1
+        }
+    ];
+
 
         let indiceAtual = 0;
         let acertos = 0;

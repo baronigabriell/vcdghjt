@@ -96,6 +96,7 @@ mysqli_query($conexao, $updateIndice);
 
         <div class="carta" onclick="redirecionarPaginaQuiz()"></div>
     </main>
+    <button id="fase2" onclick="redirecionarPaginaFase2()">Ir para a 2ª fase</button>
 
     <script>
         const dice = document.querySelector('.dice');
@@ -142,11 +143,15 @@ mysqli_query($conexao, $updateIndice);
         }
 
         function redirecionarPaginaSeguir() {
-            window.location.href = "quiz.php";
+            window.location.href = "dadofase1.php";
         }
 
         function redirecionarPaginaQuiz() {
             window.location.href = "quiz.php";
+        }
+
+        function redirecionarPaginaFase2() {
+            window.location.href = "dadofase2.php";
         }
 
         const hamburger = document.getElementById('bars');
@@ -214,6 +219,21 @@ mysqli_query($conexao, $updateIndice);
     .carta:not(:hover) {
         transform: scale(1);
         transition: 0.5s all ease-out;
+    }
+
+    h2{
+        color: #999999;
+        font-style: italic;
+        font-family: outfit;
+        white-space: nowrap;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #fase2{
+        width: 180px;
+        margin-left: 80%;
+        z-index: 10;
     }
 </style>
 </html>
