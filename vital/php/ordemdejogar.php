@@ -132,7 +132,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 </body>
 <script>
     function redirecionarPagina() {
-        window.location.href = "dado.php";
+        window.location.href = "dadofase1.php";
     }
 </script>
 </html>

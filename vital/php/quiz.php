@@ -1,4 +1,10 @@
+<?php
+session_start();
+require_once 'conecta.php';
 
+$nome = $_SESSION['jogador_atual'];
+mysqli_query($conexao, "UPDATE jogadores_status SET has_skip = 1 WHERE nome = '$nome'");
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -232,9 +238,33 @@
         carregarPergunta();
 
         function redirecionarPagina() {
-        window.location.href = "dado.php";
+        window.location.href = "dadofase1.php";
     }
     </script>
+    <?php
+    include 'conecta.php';
+
+    if (isset($_SESSION['indice_vez'])) {
+        // Recupera dados atuais
+        $query = "SELECT jogadores_id, ordem_jogo, indice_vez FROM jogadores ORDER BY jogadores_id DESC LIMIT 1";
+        $result = mysqli_query($conexao, $query);
+        
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $jogadores_id = $row['jogadores_id'];
+            $jogadores = json_decode($row['ordem_jogo'], true);
+            $indice_vez = $row['indice_vez'];
+
+            // Avança o índice (apenas +1; skip será tratado no dadofase1.php)
+            $novo_indice = ($indice_vez + 1) % count($jogadores);
+
+            // Atualiza no banco e sessão
+            mysqli_query($conexao, "UPDATE jogadores SET indice_vez = $novo_indice WHERE jogadores_id = $jogadores_id");
+            $_SESSION['indice_vez'] = $novo_indice;
+        }
+    }
+    ?>
+
 </body>
 
 </html>
