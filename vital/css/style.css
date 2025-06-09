@@ -225,7 +225,7 @@ a {
 .clicked .fundo,
 .clicked .lid,
 .clicked .envelope {
-    transform: translateY(500px); /* Move tudo para baixo */
+    transform: translateY(1000px); /* Move tudo para baixo */
 }
 
 /* A carta permanece no lugar */

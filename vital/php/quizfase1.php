@@ -1,18 +1,16 @@
 <?php
 session_start();
 
-// Inicializa o índice da pergunta se não existir
+// Avança a pergunta automaticamente toda vez que entrar na página
 if (!isset($_SESSION['pergunta_atual'])) {
     $_SESSION['pergunta_atual'] = 0;
-}
-
-// Atualiza quando vem de dadofase1.php
-if (isset($_GET['proxima'])) {
+} else {
     $_SESSION['pergunta_atual']++;
     if ($_SESSION['pergunta_atual'] >= 13) {
         $_SESSION['pergunta_atual'] = 0; // Reinicia se acabaram as perguntas
     }
 }
+
 ?>
 
 <script>
@@ -271,6 +269,7 @@ if (isset($_GET['proxima'])) {
             });
         }
 
+        
         function verResposta() {
             if (respondeu) return;
 
@@ -286,57 +285,38 @@ if (isset($_GET['proxima'])) {
             if (valor === correta) {
                 document.getElementById(`opcao-${valor}`).classList.add("certa");
                 acertos++;
+                
+                // AVANÇA AUTOMATICAMENTE APÓS 1 SEGUNDO SE ACERTAR
+                setTimeout(() => {
+                    indiceAtual++;
+                    if (indiceAtual < quiz.length) {
+                        carregarPergunta();
+                    } else {
+                        // Quiz completo
+                        document.getElementById("form-opcoes").innerHTML = "";
+                        document.getElementById("pergunta").innerText = "";
+                        document.getElementById("ver").style.display = "none";
+                        document.getElementById("proxima").style.display = "none";
+                        document.getElementById("resultado").innerText = `Você acertou ${acertos} de ${quiz.length} perguntas!`;
+                    }
+                }, 1000);
+                
             } else {
                 document.getElementById(`opcao-${valor}`).classList.add("errada");
                 document.getElementById(`opcao-${correta}`).classList.add("certa");
-
-                // Marca que o jogador errou (para bloquear na próxima rodada)
+                
+                // BLOQUEIA O JOGADOR (código existente)
                 fetch('bloquear_jogador.php', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `jogador=<?php echo urlencode($_SESSION['jogador_atual']); ?>`
+                    body: 'jogador=' + encodeURIComponent('<?php echo $_SESSION['jogador_atual']; ?>')
                 });
             }
 
             respondeu = true;
             document.getElementById("ver").style.display = "none";
-            document.getElementById("proxima").style.display = "inline-block";
-
-            if (valor !== correta) {
-        // BLOQUEIA O JOGADOR
-        fetch('bloquear_jogador.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: 'jogador=' + encodeURIComponent('<?php echo $_SESSION['jogador_atual']; ?>')
-        })
-        .then(response => response.text())
-        .then(data => {
-            if (data === 'OK') {
-                console.log('Jogador bloqueado com sucesso');
-            } else {
-                console.error('Falha ao bloquear jogador');
-            }
-        });
-    }
         }
 
 
-        function proximaPergunta() {
-            indiceAtual++;
-            if (indiceAtual < quiz.length) {
-                carregarPergunta();
-            } else {
-                document.getElementById("form-opcoes").innerHTML = "";
-                document.getElementById("pergunta").innerText = "";
-                document.getElementById("ver").style.display = "none";
-                document.getElementById("proxima").style.display = "none";
-                document.getElementById("resultado").innerText = `Você acertou ${acertos} de ${quiz.length} perguntas!`;
-            }
-        }
 
         carregarPergunta();
 

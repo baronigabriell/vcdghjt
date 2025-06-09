@@ -1,25 +1,22 @@
 <?php
 session_start();
 
-// Inicializa o índice da pergunta se não existir
+// Avança a pergunta automaticamente toda vez que entrar na página
 if (!isset($_SESSION['pergunta_atual'])) {
     $_SESSION['pergunta_atual'] = 0;
-}
-
-// Atualiza quando vem de dadofase1.php
-if (isset($_GET['proxima'])) {
+} else {
     $_SESSION['pergunta_atual']++;
     if ($_SESSION['pergunta_atual'] >= 13) {
         $_SESSION['pergunta_atual'] = 0; // Reinicia se acabaram as perguntas
     }
 }
+
 ?>
 
 <script>
     // No carregamento da página, use o índice da sessão
     let indiceAtual = <?php echo $_SESSION['pergunta_atual']; ?>;
 </script>
-
 <head>
     <meta charset="UTF-8">
     <title>Quiz com Avaliação</title>
