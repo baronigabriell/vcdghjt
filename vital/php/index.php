@@ -1,3 +1,13 @@
+<?php
+session_start();
+$_SESSION['pergunta_atual'] = 0;
+
+// Limpa perguntas feitas
+include 'conecta.php';
+mysqli_query($conexao, "DELETE FROM perguntas_feitas");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,6 +94,8 @@ wrapper.addEventListener('click', () => {
 function redirecionarPaginaTabu() {
         window.location.href = "cadjogadores.php";
     }
+
+
 </script>
 
 </html>

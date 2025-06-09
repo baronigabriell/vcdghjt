@@ -1,0 +1,36 @@
+Jogador: 
+Query: INSERT INTO jogadores_status (nome, has_skip) 
+          VALUES ('', 1)
+          ON DUPLICATE KEY UPDATE has_skip = 1
+Erro: 
+
+Jogador: katia
+Query: INSERT INTO jogadores_status (nome, has_skip) 
+          VALUES ('katia', 1)
+          ON DUPLICATE KEY UPDATE has_skip = 1
+Erro: 
+
+Jogador: 
+Query: INSERT INTO jogadores_status (nome, has_skip) 
+          VALUES ('', 1)
+          ON DUPLICATE KEY UPDATE has_skip = 1
+Erro: 
+
+Jogador: e
+Query: INSERT INTO jogadores_status (nome, has_skip) 
+          VALUES ('e', 1)
+          ON DUPLICATE KEY UPDATE has_skip = 1
+Erro: 
+
+Jogador: 
+Query: INSERT INTO jogadores_status (nome, has_skip) 
+          VALUES ('', 1)
+          ON DUPLICATE KEY UPDATE has_skip = 1
+Erro: 
+
+Jogador: katia
+Query: INSERT INTO jogadores_status (nome, has_skip) 
+          VALUES ('katia', 1)
+          ON DUPLICATE KEY UPDATE has_skip = 1
+Erro: 
+
